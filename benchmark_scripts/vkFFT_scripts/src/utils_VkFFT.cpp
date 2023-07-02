@@ -366,7 +366,7 @@ VkFFTResult transferDataToCPU(VkGPU* vkGPU, void* cpu_arr, void* output_buffer, 
 	uint64_t stagingBufferSize = transferSize;
 	VkBuffer stagingBuffer = { 0 };
 	VkDeviceMemory stagingBufferMemory = { 0 };
-	resFFT = allocateBuffer(vkGPU, &stagingBuffer, &stagingBufferMemory, VK_BUFFER_USAGE_TRANSFER_DST_BIT, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT, stagingBufferSize);
+	resFFT = allocateBuffer(vkGPU, &stagingBuffer, &stagingBufferMemory, VK_BUFFER_USAGE_TRANSFER_DST_BIT, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT | VK_MEMORY_PROPERTY_HOST_CACHED_BIT, stagingBufferSize);
 	if (resFFT != VKFFT_SUCCESS) return resFFT;
 	VkCommandBufferAllocateInfo commandBufferAllocateInfo = { VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO };
 	commandBufferAllocateInfo.commandPool = vkGPU->commandPool;

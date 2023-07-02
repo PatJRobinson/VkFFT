@@ -170,46 +170,19 @@ VkFFTResult sample_0_benchmark_VkFFT_single(VkGPU* vkGPU, uint64_t file_output, 
 			// if (num_iter == 0) num_iter = 1;
 			double totTime = 0;
 
+
+
 			VkFFTLaunchParams launchParams = {};
 			resFFT = performVulkanFFT(vkGPU, &app, &launchParams, 1, num_iter);
 			if (resFFT != VKFFT_SUCCESS) return resFFT;
 
-			// resCALYO = apply_bandpass_filter(buffer, filter)
+			// resCALYO = apply_bandpass_filter()
 
 			resFFT = performVulkanFFT(vkGPU, &app, &launchParams, -1, num_iter);
 			if (resFFT != VKFFT_SUCCESS) return resFFT;
 
-			// resCALYO = apply_tfm_db_colour(buffer, tfm_LUT, fpga_data, array_data)
 
-
-			// if (resFFT != VKFFT_SUCCESS) return resFFT;
-			// run_time[r] = totTime;
-			// if (n > 0) {
-			// 	if (r == num_runs - 1) {
-			// 		double std_error = 0;
-			// 		double avg_time = 0;
-			// 		for (uint64_t t = 0; t < num_runs; t++) {
-			// 			avg_time += run_time[t];
-			// 		}
-			// 		avg_time /= num_runs;
-			// 		for (uint64_t t = 0; t < num_runs; t++) {
-			// 			std_error += (run_time[t] - avg_time) * (run_time[t] - avg_time);
-			// 		}
-			// 		std_error = sqrt(std_error / num_runs);
-			// 		uint64_t num_tot_transfers = 0;
-			// 		for (uint64_t i = 0; i < configuration.FFTdim; i++)
-			// 			num_tot_transfers += app.localFFTPlan->numAxisUploads[i];
-			// 		num_tot_transfers *= 4;
-			// 		if (file_output)
-			// 			fprintf(output, "VkFFT System: %" PRIu64 " %" PRIu64 "x%" PRIu64 " Buffer: %" PRIu64 " MB avg_time_per_step: %0.3f ms std_error: %0.3f num_iter: %" PRIu64 " benchmark: %" PRIu64 " bandwidth: %0.1f\n", (uint64_t)log2(configuration.size[0]), configuration.size[0], configuration.numberBatches, bufferSize / 1024 / 1024, avg_time, std_error, num_iter, (uint64_t)(((double)bufferSize / 1024) / avg_time), bufferSize / 1024.0 / 1024.0 / 1.024 * num_tot_transfers / avg_time);
-
-			// 		printf("VkFFT System: %" PRIu64 " %" PRIu64 "x%" PRIu64 " Buffer: %" PRIu64 " MB avg_time_per_step: %0.3f ms std_error: %0.3f num_iter: %" PRIu64 " benchmark: %" PRIu64 " bandwidth: %0.1f\n", (uint64_t)log2(configuration.size[0]), configuration.size[0], configuration.numberBatches, bufferSize / 1024 / 1024, avg_time, std_error, num_iter, (uint64_t)(((double)bufferSize / 1024) / avg_time), bufferSize / 1024.0 / 1024.0 / 1.024 * num_tot_transfers / avg_time);
-			// 		benchmark_result += ((double)bufferSize / 1024) / avg_time;
-			// 	}
-
-			// }
-			
-
+			// resCALYO = apply_tfm_db_colour()
 
 
             resFFT = transferDataToCPU(vkGPU, cpu_arr, &buffer, bufferSize);

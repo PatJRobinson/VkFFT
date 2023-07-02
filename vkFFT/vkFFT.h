@@ -35474,7 +35474,7 @@ static inline VkFFTResult VkFFTPlanR2CMultiUploadDecomposition(VkFFTApplication*
 				deleteVkFFT(app);
 				return VKFFT_ERROR_MALLOC_FAILED;
 			}
-			res = clGetProgramInfo(axis->program, CL_PROGRAM_BINARIES, sizeof(unsigned char*), &axis->binary, NULL);
+			res = clGetProgramInfo(axis->program, CL_PROGRAM_BINARIES, codeSize, &axis->binary, NULL);
 			if (res != CL_SUCCESS) {
 				if (app->configuration.saveApplicationToString) {
 					free(axis->binary);
@@ -38189,7 +38189,13 @@ static inline VkFFTResult VkFFTPlanAxis(VkFFTApplication* app, VkFFTPlan* FFTPla
 				GLSLANG_MSG_DEFAULT_BIT,
 				(const glslang_resource_t*)&default_resource,
 			};
-			//printf("%s\n", code0);
+
+			// FILE * fp = fopen("FFTShader.txt", "w+");
+
+			// fprintf(fp, "%s", code0);
+
+			// fclose(fp);
+
 			glslang_shader_t* shader = glslang_shader_create((const glslang_input_t*)&input);
 			const char* err;
 			if (!glslang_shader_preprocess(shader, &input))
@@ -38268,6 +38274,8 @@ static inline VkFFTResult VkFFTPlanAxis(VkFFTApplication* app, VkFFTPlan* FFTPla
 		VkShaderModuleCreateInfo createInfo = { VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO };
 		createInfo.pCode = code;
 		createInfo.codeSize = codeSize;
+
+
 		res = vkCreateShaderModule(app->configuration.device[0], &createInfo, 0, &pipelineShaderStageCreateInfo.module);
 		if (res != VK_SUCCESS) {
 			free(code);
@@ -38749,7 +38757,7 @@ static inline VkFFTResult VkFFTPlanAxis(VkFFTApplication* app, VkFFTPlan* FFTPla
 				deleteVkFFT(app);
 				return VKFFT_ERROR_MALLOC_FAILED;
 			}
-			res = clGetProgramInfo(axis->program, CL_PROGRAM_BINARIES, sizeof(unsigned char*), &axis->binary, NULL);
+			res = clGetProgramInfo(axis->program, CL_PROGRAM_BINARIES, codeSize, &axis->binary, NULL);
 			if (res != CL_SUCCESS) {
 				free(axis->binary);
 				axis->binary = 0;
