@@ -162,8 +162,10 @@ add_library(VkFFT INTERFACE)
 target_include_directories(VkfftLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/half_lib/)
 add_library(half INTERFACE)
 
-target_include_directories(VkfftLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/benchmark_scripts/vkFFT_scripts/include/ ${VKFFT_INCLUDES})
+target_include_directories(VkfftLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/benchmark_scripts/vkFFT_scripts/include/ VkFFTImp/ ${VKFFT_INCLUDES})
 target_include_directories(VkfftLib PUBLIC ${Vulkan_INCLUDE_DIRS})
+
+target_link_libraries(VkfftLib PUBLIC VkFFT half)
 
 message("VK INCLUDES = ${VKFFT_INCLUDES}")
 # target_include_directories(VkfftLib PUBLIC ${VKFFT_INCLUDES})
