@@ -25,12 +25,12 @@ if (MSVC)
 	add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 endif()
 
-add_library(VkfftLib OBJECT VkFFTimp.cpp
+add_library(VkfftLib OBJECT VkFFTImp/VkFFTimp.cpp
 		benchmark_scripts/vkFFT_scripts/src/utils_VkFFT.cpp)
 
 
 find_package(Vulkan REQUIRED)
-target_include_directories(VkfftLib PUBLIC ${Vulkan_INCLUDE_DIRS})
+target_include_directories(VkfftLib PUBLIC ${Vulkan_INCLUDE_DIRS} glslang-main/glslang/include)
 
 
 # if(build_VkFFT_FFTW_precision)
