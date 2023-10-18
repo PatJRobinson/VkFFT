@@ -30,7 +30,7 @@ add_library(VkfftLib OBJECT VkFFTImp/VkFFTimp.cpp
 
 
 find_package(Vulkan REQUIRED)
-target_include_directories(VkfftLib PUBLIC ${Vulkan_INCLUDE_DIRS} glslang-main/glslang/include)
+target_include_directories(VkfftLib PUBLIC ${Vulkan_INCLUDE_DIRS} glslang-main/glslang/Include)
 
 
 # if(build_VkFFT_FFTW_precision)

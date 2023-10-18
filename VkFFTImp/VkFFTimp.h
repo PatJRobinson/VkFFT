@@ -13,7 +13,7 @@
 
 #include <vulkan/vulkan.h>
 #include "half.hpp"
-#include "benchmark_scripts/vkFFT_scripts/include/user_benchmark_VkFFT.h"
+#include "../benchmark_scripts/vkFFT_scripts/include/user_benchmark_VkFFT.h"
 
 namespace Calyo
 {
