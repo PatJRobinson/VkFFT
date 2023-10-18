@@ -151,8 +151,8 @@ target_compile_definitions(VkfftLib PUBLIC -DVK_API_VERSION=11)#10 - Vulkan 1.0,
 # if(${VKFFT_BACKEND} EQUAL 0)
 
 
-target_include_directories(VkfftLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/glslang-main/glslang/Include/)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/glslang-main)
+# target_include_directories(VkfftLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/glslang-main/glslang/Include/)
+# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/glslang-main)
 # endif()
 
 target_include_directories(VkfftLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/vkFFT/)
