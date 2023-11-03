@@ -56,7 +56,7 @@ namespace Calyo
 	int ifft(VkFFTData * p_data);
 
 	// clean up
-	void destroytVkFFT(VkFFTData* p_data);
+	void destroyVkFFT(VkFFTData* p_data);
 	// example main
 	int test_vkfft();
 }

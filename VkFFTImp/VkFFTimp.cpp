@@ -318,14 +318,15 @@ namespace Calyo
 
 
 	// clean up
-	void destroytVkFFT(VkFFTData* p_data) {
+	void destroyVkFFT(VkFFTData* p_data) {
 
-		vkDestroyFence(p_data->vkGPU_.device, p_data->vkGPU_.fence, NULL);
-		vkDestroyCommandPool(p_data->vkGPU_.device, p_data->vkGPU_.commandPool, NULL);
-		vkDestroyDevice(p_data->vkGPU_.device, NULL);
-		DestroyDebugUtilsMessengerEXT(&p_data->vkGPU_, NULL);
-		vkDestroyInstance(p_data->vkGPU_.instance, NULL);
-		glslang_finalize_process();//destroy compiler after use
+		deleteVkFFT(&p_data->app_);
+		// vkDestroyFence(p_data->vkGPU_.device, p_data->vkGPU_.fence, NULL);
+		// vkDestroyCommandPool(p_data->vkGPU_.device, p_data->vkGPU_.commandPool, NULL);
+		// vkDestroyDevice(p_data->vkGPU_.device, NULL);
+		// DestroyDebugUtilsMessengerEXT(&p_data->vkGPU_, NULL);
+		// vkDestroyInstance(p_data->vkGPU_.instance, NULL);
+		// glslang_finalize_process();//destroy compiler after use
 
 	}
 
